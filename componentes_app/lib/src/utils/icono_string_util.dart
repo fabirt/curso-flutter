@@ -9,7 +9,7 @@ final _icons = <String, IconData>{
   'folder_open'   : Icons.credit_card,
   'donut_large'   : Icons.donut_large,
   'input'         : Icons.input,
-  'slider'        : Icons.linear_scale,
+  'slider'        : Icons.tune,
 };
 
 Icon getIcon( String nombreIcono ) {
