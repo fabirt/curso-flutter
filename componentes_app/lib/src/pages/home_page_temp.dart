@@ -16,16 +16,16 @@ class HomePageTemp extends StatelessWidget {
     );
   }
 
-  List<Widget> _crearItems() {
-    List<Widget> lista = new List<Widget>();
-    for (String item in opciones) {
-      final tempWidget = ListTile(
-        title: Text(item),
-      );
-      lista..add(tempWidget)..add(Divider());
-    }
-    return lista;
-  }
+  // List<Widget> _crearItems() {
+  //   List<Widget> lista = new List<Widget>();
+  //   for (String item in opciones) {
+  //     final tempWidget = ListTile(
+  //       title: Text(item),
+  //     );
+  //     lista..add(tempWidget)..add(Divider());
+  //   }
+  //   return lista;
+  // }
 
   List<Widget> _crearItemsCorto() {
     var widgets = opciones.map((item) {
