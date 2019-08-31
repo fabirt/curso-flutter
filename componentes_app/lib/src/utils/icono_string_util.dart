@@ -6,7 +6,8 @@ import 'package:componentes_app/src/utils/colors.dart';
 final _icons = <String, IconData>{
   'add_alert'     : Icons.sim_card_alert,
   'accessibility' : Icons.person_pin,
-  'folder_open'   : Icons.credit_card
+  'folder_open'   : Icons.credit_card,
+  'donut_large'   : Icons.donut_large
 };
 
 Icon getIcon( String nombreIcono ) {
