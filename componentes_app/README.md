@@ -1,16 +1,19 @@
-# componentes_app
+# Componentes App
 
-A new Flutter project.
+Una aplicación con Flutter donde se usan gran 
+cantidad de widgets, con el fin de practicar y afianzar conocimientos.
 
-## Getting Started
+## Contenido
 
-This project is a starting point for a Flutter application.
+- Alertas y diálogos.
+- Avatars circulares e imágenes.
+- Tarjetas/Cards.
+- Animated contanier.
+- Entradas de texto de diferentes tipos (email, contraseña, fecha, etc) y menú dropdown.
+- Sliders, Checkbox y Switch.
+- Listas y manejo del scroll.
 
-A few resources to get you started if this is your first Flutter project:
+## Demo
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+![demo](example/demo.gif)	
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
