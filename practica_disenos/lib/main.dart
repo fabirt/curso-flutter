@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica_disenos/src/pages/basic_page.dart';
+import 'package:practica_disenos/src/pages/scroll_page.dart';
  
 void main() => runApp(MyApp());
  
@@ -9,9 +10,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Práctica diseños',
-      initialRoute: 'basic',
+      initialRoute: 'scroll',
       routes: {
-        'basic'  : ( BuildContext context ) => BasicPage()
+        'basic'  : ( BuildContext context ) => BasicPage(),
+        'scroll'  : ( BuildContext context ) => ScrollPage()
       },
       
     );
