@@ -50,8 +50,8 @@ class Pelicula {
   });
 
   Pelicula.fromJsonMap( Map<String, dynamic> json ) {
-    popularity        = json['popularity'] / 1;
-    voteCount         = json['vote_count'] / 1;
+    popularity        = json['popularity'].toDouble();
+    voteCount         = json['vote_count'];
     video             = json['video'];
     posterPath        = json['poster_path'];
     id                = json['id'];
@@ -61,9 +61,17 @@ class Pelicula {
     originalTitle     = json['original_title'];
     genreIds          = json['genre_ids'].cast<int>();
     title             = json['title'];
-    voteAverage       = json['vote_average'];
+    voteAverage       = json['vote_average'].toDouble();
     overview          = json['overview'];
     releaseDate       = json['release_date'];
+  }
+
+  getPosterUrl() {
+    if (posterPath == null) {
+      return 'http://www.sclance.com/pngs/image-placeholder-png/image_placeholder_png_698156.png';
+    } else {
+      return 'https://image.tmdb.org/t/p/w500/$posterPath';
+    }
   }
 
 }
