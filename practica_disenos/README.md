@@ -1,16 +1,16 @@
-# practica_disenos
+# Práctica de diseños
 
-A new Flutter project.
+El objetivo principal de este proyecto fue desarrollar la visión para transformar un diseño previamente creado, en una aplicación de Flutter.
 
-## Getting Started
+## Diseño básico - Recomendado por Flutter 
+![demo](examples/basic.png)
 
-This project is a starting point for a Flutter application.
+## Diseño intermedio - Con PageViews e imágenes
 
-A few resources to get you started if this is your first Flutter project:
+![demo](examples/page_view_1.png)
+![demo](examples/page_view_2.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Diseño avanzado - Con blur, grids background y más
+![demo](examples/adv_page.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
