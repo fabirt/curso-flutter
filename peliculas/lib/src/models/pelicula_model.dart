@@ -74,5 +74,13 @@ class Pelicula {
     }
   }
 
+  getBackdropUrl() {
+    if (backdropPath == null) {
+      return 'http://www.sclance.com/pngs/image-placeholder-png/image_placeholder_png_698156.png';
+    } else {
+      return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+    }
+  }
+
 }
 
