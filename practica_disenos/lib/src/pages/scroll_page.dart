@@ -6,7 +6,12 @@ class ScrollPage extends StatelessWidget {
     return Scaffold(
       body: PageView(
         scrollDirection: Axis.vertical,
-        children: <Widget>[_pageOne(), _pageTwo()],
+        children: <Widget>[
+          _pageOne(),
+          _pageTwo(() {
+            Navigator.pushNamed(context, 'adv');
+          })
+        ],
       ),
     );
   }
@@ -21,7 +26,7 @@ class ScrollPage extends StatelessWidget {
     );
   }
 
-  Widget _pageTwo() {
+  Widget _pageTwo(Function onPressed) {
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -35,9 +40,7 @@ class ScrollPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
             child: Text('Bienvenido', style: TextStyle(fontSize: 20.0),),
           ),
-          onPressed: () {
-
-          },
+          onPressed: onPressed
         ),
       ),
     );
