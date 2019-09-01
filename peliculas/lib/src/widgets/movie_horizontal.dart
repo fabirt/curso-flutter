@@ -8,7 +8,7 @@ class MovieHorizontal extends StatelessWidget {
   final Function onEndReached;
   final _pageController = PageController(
     initialPage: 1,
-    viewportFraction: 0.3
+    viewportFraction: 0.24
   );
 
   MovieHorizontal({ @required this.peliculas, @required this.onEndReached });
@@ -29,6 +29,7 @@ class MovieHorizontal extends StatelessWidget {
       child: PageView.builder(
         pageSnapping: false,
         // children: _tarjetas(context),
+        
         controller: _pageController,
         itemCount: peliculas.length,
         itemBuilder: (context, i) {
@@ -43,6 +44,8 @@ class MovieHorizontal extends StatelessWidget {
 
 
   Widget _movieCard(BuildContext context, { Pelicula pelicula }) {
+    
+    final _screenSize = MediaQuery.of(context).size;    
     pelicula.uniqueId = '${pelicula.id}-populars';
     
     final card = Container(
@@ -57,7 +60,7 @@ class MovieHorizontal extends StatelessWidget {
                   image: NetworkImage(pelicula.getPosterUrl()),
                   placeholder: AssetImage('assets/no-image.jpg'),
                   fit: BoxFit.cover,
-                  height: 130.0,
+                  height: _screenSize.height *0.16,
                 ),
               ),
             ),
