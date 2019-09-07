@@ -36,13 +36,13 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.filter_center_focus),
-        onPressed: _scanQR,
+        onPressed: () => _scanQR(context),
         backgroundColor: Theme.of(context).primaryColor,
       ),
     );
   }
 
-  _scanQR() async {
+  _scanQR(BuildContext context) async {
     // https://flaticon.com
     // geo:40.74296409443502,-74.12541761835939
     // String futureString = '';
@@ -56,13 +56,15 @@ class _HomePageState extends State<HomePage> {
     if (futureString != null) {
       final scan = ScanModel(value: futureString);
       scansBloc.addScan(scan);
+      final scan2 = ScanModel(value: 'geo:40.74296409443502,-74.12541761835939');
+      scansBloc.addScan(scan2);
 
       if (Platform.isIOS) {
         Future.delayed( Duration( milliseconds: 800 ), () {
-          utils.launchScan(scan);
+          utils.launchScan(context, scan);
         });
       } else {
-          utils.launchScan(scan);
+          utils.launchScan(context, scan);
       }
 
     }

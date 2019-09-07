@@ -33,7 +33,7 @@ class MapsPage extends StatelessWidget {
                 title: Text(scans[i].value),
                 subtitle: Text('ID: ${ scans[i].id }'),
                 trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey,),
-                onTap: () => utils.launchScan(scans[i]),
+                onTap: () => utils.launchScan(context, scans[i]),
               ),
             );
           },
