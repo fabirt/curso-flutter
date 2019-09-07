@@ -1,16 +1,17 @@
-# qr_reader_app
+# QR reader app
 
-A new Flutter project.
+Esta aplicación cuenta con las siguientes características:
+- Lanzar la cámara y leer un código QR
+- Manejo de almacenamiento interno utilizando una base de datos SQLite 
+- Mapas
+- Enlaces a páginas web
 
-## Getting Started
+## Funcionamiento
 
-This project is a starting point for a Flutter application.
+La aplicación lee un código QR e identifica si la información recibida corresponde a un enlace de una página web
+ó a una geolocalización. Si es un enlace, abre el navegador con dicha página web. En caso de recibir una geolocaización, navega a
+una vista donde se muestra un mapa y un marcador con dicha ubicación.
+Todos los datos escaneados se guardan en una base de datos SQLite interna.
+El mapa se implementó utilizando [The Mapbox Geocoding API](https://docs.mapbox.com/api/search/#geocoding)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
