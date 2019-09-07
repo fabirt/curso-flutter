@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:qr_reader_app/src/bloc/scans_bloc.dart';
 import 'package:qr_reader_app/src/models/scan_model.dart';
@@ -5,6 +7,7 @@ import 'package:qrcode_reader/qrcode_reader.dart';
 
 import 'package:qr_reader_app/src/pages/addresses_page.dart';
 import 'package:qr_reader_app/src/pages/maps_page.dart';
+import 'package:qr_reader_app/src/utils/utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
   @override
@@ -53,6 +56,15 @@ class _HomePageState extends State<HomePage> {
     if (futureString != null) {
       final scan = ScanModel(value: futureString);
       scansBloc.addScan(scan);
+
+      if (Platform.isIOS) {
+        Future.delayed( Duration( milliseconds: 800 ), () {
+          utils.launchScan(scan);
+        });
+      } else {
+          utils.launchScan(scan);
+      }
+
     }
   }
 
