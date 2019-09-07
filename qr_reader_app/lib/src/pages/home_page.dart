@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QR Scanner'),
+        title: Text('QR scanner'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.delete_forever),
@@ -90,11 +90,11 @@ class _HomePageState extends State<HomePage> {
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.map),
-          title: Text('Mapas')
+          title: Text('Ubicaciones', style: TextStyle(fontSize: 12),)
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.cloud_queue),
-          title: Text('Direcciones')
+          title: Text('Enlaces', style: TextStyle(fontSize: 12))
         ),
       ],
     );

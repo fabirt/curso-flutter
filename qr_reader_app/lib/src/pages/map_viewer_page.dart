@@ -25,7 +25,7 @@ class _MapViewerPageState extends State<MapViewerPage> {
           IconButton(
             icon: Icon(Icons.my_location),
             onPressed: () {
-              mapController.move(scan.getLatLng(), 15);
+              mapController.move(scan.getLatLng(), 13);
             },
           )
         ],
@@ -40,7 +40,7 @@ class _MapViewerPageState extends State<MapViewerPage> {
       mapController: mapController,
       options: MapOptions(
         center: scan.getLatLng(),
-        zoom: 15
+        zoom: 13
       ),
       layers: [
         _buildMap(),
@@ -84,7 +84,7 @@ class _MapViewerPageState extends State<MapViewerPage> {
 
   Widget _buildFAB(BuildContext context) {
     return FloatingActionButton(
-      child: Icon(Icons.movie_filter),
+      child: Icon(Icons.color_lens, color: Colors.white,),
       backgroundColor: Theme.of(context).primaryColor,
       onPressed: () {
         currentOptionIndex++;

@@ -32,9 +32,10 @@ class AddressesPage extends StatelessWidget {
               background: Container(color: Colors.red,),
               onDismissed: (direction) => scansBloc.deleteScan(scans[i].id),
               child: ListTile(
+                contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),                
                 leading: Icon(Icons.cloud_queue, color: Theme.of(context).primaryColor,),
-                title: Text(scans[i].value),
-                subtitle: Text('ID: ${ scans[i].id }'),
+                title: Text('Enlace'),
+                subtitle: Text(scans[i].value),
                 trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey,),
                 onTap: () => utils.launchScan(context, scans[i]),
               ),

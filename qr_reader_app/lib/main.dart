@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'QR Reader',
+      title: 'QR scanner',
       initialRoute: 'home',
       routes: {
         'home': (BuildContext context) => Scaffold(body: HomePage()),

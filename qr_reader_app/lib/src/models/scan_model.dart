@@ -36,4 +36,13 @@ class ScanModel {
       final lng = double.parse(data[1]);
       return LatLng(lat, lng);
     }
+
+    @override
+    String toString() {
+      final latLng = getLatLng();
+      final lat = latLng.latitude.toString();
+      final lng = latLng.longitude.toString();
+      final string = 'Lat: $lat\nLng: $lng';
+      return string;
+  }
 }

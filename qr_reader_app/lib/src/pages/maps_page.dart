@@ -32,9 +32,10 @@ class MapsPage extends StatelessWidget {
               background: Container(color: Colors.red,),
               onDismissed: (direction) => scansBloc.deleteScan(scans[i].id),
               child: ListTile(
+                contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 leading: Icon(Icons.map, color: Theme.of(context).primaryColor,),
-                title: Text(scans[i].value),
-                subtitle: Text('ID: ${ scans[i].id }'),
+                title: Text('Geolocalización'),
+                subtitle: Text(scans[i].toString()),
                 trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey,),
                 onTap: () => utils.launchScan(context, scans[i]),
               ),
