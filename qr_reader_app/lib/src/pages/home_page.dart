@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: _buildBottomBavigationBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.filter_center_focus),
+        child: Icon(Icons.filter_center_focus, color: Colors.white,),
         onPressed: () => _scanQR(context),
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -46,28 +46,29 @@ class _HomePageState extends State<HomePage> {
     // https://flaticon.com
     // geo:40.74296409443502,-74.12541761835939
     // String futureString = '';
-    String futureString = 'https://flaticon.com';
-    // try {
-    //   futureString = await new QRCodeReader().scan();
-    // } catch (e) {
-    //   futureString = e.toString();
-    // }
+    String futureString = '';
+    try {
+      futureString = await new QRCodeReader().scan();
+      if (futureString != null) {
+        if (futureString.contains(RegExp(r'http|geo'))) {
+          final scan = ScanModel(value: futureString);
+          scansBloc.addScan(scan);
 
-    if (futureString != null) {
-      final scan = ScanModel(value: futureString);
-      scansBloc.addScan(scan);
-      final scan2 = ScanModel(value: 'geo:40.74296409443502,-74.12541761835939');
-      scansBloc.addScan(scan2);
-
-      if (Platform.isIOS) {
-        Future.delayed( Duration( milliseconds: 800 ), () {
-          utils.launchScan(context, scan);
-        });
-      } else {
-          utils.launchScan(context, scan);
+          if (Platform.isIOS) {
+            Future.delayed( Duration( milliseconds: 800 ), () {
+              utils.launchScan(context, scan);
+            });
+          } else {
+              utils.launchScan(context, scan);
+          }
+        } else {
+          throw 'QR no compatible';
+        }
       }
-
+    } catch (e) {
+      _showSnackBar(context, e.toString());
     }
+
   }
 
   Widget _callPage(int currentPage) {
@@ -92,10 +93,23 @@ class _HomePageState extends State<HomePage> {
           title: Text('Mapas')
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.collections_bookmark),
+          icon: Icon(Icons.cloud_queue),
           title: Text('Direcciones')
         ),
       ],
     );
+  }
+
+  _showSnackBar(BuildContext context, String content) {
+    final snackBar = SnackBar(
+      content: Text(content),
+      action: SnackBarAction(
+        label: 'OK',
+        onPressed: (){},
+        textColor: Theme.of(context).primaryColor,
+      ),
+    );
+
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 }

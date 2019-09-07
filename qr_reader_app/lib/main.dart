@@ -12,11 +12,12 @@ class MyApp extends StatelessWidget {
       title: 'QR Reader',
       initialRoute: 'home',
       routes: {
-        'home': (BuildContext context) => HomePage(),
+        'home': (BuildContext context) => Scaffold(body: HomePage()),
         'map': (BuildContext context) => MapViewerPage()
       },
       theme: ThemeData(
-        primaryColor: Colors.teal
+        primaryColor: Color(0xFFE66868),
+        accentColor: Color(0xFFEB8686)
       ),
     );
   }
