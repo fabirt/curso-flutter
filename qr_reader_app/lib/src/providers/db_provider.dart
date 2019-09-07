@@ -1,9 +1,9 @@
 import 'dart:io';
-
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:qr_reader_app/src/models/scan_model.dart';
+export 'package:qr_reader_app/src/models/scan_model.dart';
 
 class DBProvider {
 
@@ -46,7 +46,7 @@ class DBProvider {
   newScanRaw( ScanModel scan ) async {
     final db  = await database;
     final res = await db.rawInsert(
-      "INSERT Into Scans (id, type, value "
+      "INSERT Into Scans (id, type, value) "
       "VALUES ( ${scan.id}, '${scan.type}', '${scan.value}' )"
     );
     return res;
@@ -66,7 +66,7 @@ class DBProvider {
     return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
   }
 
-  Future<List<ScanModel>> getAllScans( int id ) async {
+  Future<List<ScanModel>> getAllScans() async {
     final db  = await database;
     final res = await db.query('Scans');
     List<ScanModel> list = res.isNotEmpty 

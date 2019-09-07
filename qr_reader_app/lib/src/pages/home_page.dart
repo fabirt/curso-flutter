@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_reader_app/src/providers/db_provider.dart';
 import 'package:qrcode_reader/qrcode_reader.dart';
 
 import 'package:qr_reader_app/src/pages/addresses_page.dart';
@@ -39,17 +40,19 @@ class _HomePageState extends State<HomePage> {
   _scanQR() async {
     // https://flaticon.com
     // geo:40.74296409443502,-74.12541761835939
-    String futureString = '';
+    // String futureString = '';
+    String futureString = 'https://flaticon.com';
     // try {
     //   futureString = await new QRCodeReader().scan();
     // } catch (e) {
     //   futureString = e.toString();
     // }
 
-    // print('Future str: $futureString');
-    // if (futureString != null) {
-    //   print('TENEMOS INFORMAION');
-    // }
+    if (futureString != null) {
+      print(':::::::: TENEMOS INFORMACION ::::::::');
+      final scan = ScanModel(value: futureString);
+      DBProvider.db.newScan(scan);
+    }
   }
 
   Widget _callPage(int currentPage) {
