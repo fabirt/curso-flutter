@@ -15,3 +15,13 @@ Todos los datos escaneados se guardan en una base de datos SQLite interna.
 El mapa se implementó utilizando [The Mapbox Geocoding API](https://docs.mapbox.com/api/search/#geocoding)
 
 ## Screenshots
+
+![](examples/links.png)
+
+
+
+![](examples/locations.png)
+
+
+
+![](examples/map.png)
