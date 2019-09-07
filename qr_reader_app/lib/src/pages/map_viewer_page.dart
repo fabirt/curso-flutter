@@ -32,10 +32,11 @@ class _MapViewerPageState extends State<MapViewerPage> {
     return FlutterMap(
       options: MapOptions(
         center: scan.getLatLng(),
-        zoom: 10
+        zoom: 15
       ),
       layers: [
-        _buildMap()
+        _buildMap(),
+        _buildMarkers(scan)
       ],
     );
   }
@@ -47,7 +48,29 @@ class _MapViewerPageState extends State<MapViewerPage> {
       additionalOptions: {
         'accessToken': 'pk.eyJ1IjoiZmFuZGlnIiwiYSI6ImNrMDl5NHRxcjBjeTIzY21uYTVsdnV4cXIifQ.PnjbisWEZwBrhAJqYi_aPg',
         'id': 'mapbox.streets'
+        // streets, dark, light, outdoors, satellite
       }
+    );
+  }
+
+  _buildMarkers(ScanModel scan) {
+    return MarkerLayerOptions(
+      markers: <Marker>[
+        Marker(
+          width: 100.0,
+          height: 100.0,
+          point: scan.getLatLng(),
+          builder: (context) {
+            return Container(
+              child: Icon(
+                Icons.location_on,
+                size: 45.0,
+                color: Theme.of(context).primaryColor,
+              ),
+            );
+          }
+        )
+      ]
     );
   }
 }
