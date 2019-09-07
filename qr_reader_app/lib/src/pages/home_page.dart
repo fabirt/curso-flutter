@@ -40,16 +40,16 @@ class _HomePageState extends State<HomePage> {
     // https://flaticon.com
     // geo:40.74296409443502,-74.12541761835939
     String futureString = '';
-    try {
-      futureString = await new QRCodeReader().scan();
-    } catch (e) {
-      futureString = e.toString();
-    }
+    // try {
+    //   futureString = await new QRCodeReader().scan();
+    // } catch (e) {
+    //   futureString = e.toString();
+    // }
 
-    print('Future str: $futureString');
-    if (futureString != null) {
-      print('TENEMOS INFORMAION');
-    }
+    // print('Future str: $futureString');
+    // if (futureString != null) {
+    //   print('TENEMOS INFORMAION');
+    // }
   }
 
   Widget _callPage(int currentPage) {
