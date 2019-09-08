@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:user_preferences_app/src/pages/settings_page.dart';
 import 'package:user_preferences_app/src/shared_prefs/user_preferences.dart';
 import 'package:user_preferences_app/src/widgets/drawer_menu_widget.dart';
 
@@ -10,6 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    prefs.lastPage = HomePage.routeName;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Preferencias de usuario'),

@@ -2,11 +2,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreferences {
 
-  // Ninguna de estas propiedades se usa
-  int _gender;
-  String _name;
-  bool _notificacionPermissions;
-
   // Patrón singleton
   static final UserPreferences _singleton = new UserPreferences._internal();
 
@@ -45,6 +40,14 @@ class UserPreferences {
   }
   set userName(String value) {
     _prefs.setString('userName', value);
+  }
+
+  // GET Y SET de la ultima pagina
+  get lastPage {
+    return _prefs.getString('lastPage') ?? 'home';
+  }
+  set lastPage(String value) {
+    _prefs.setString('lastPage', value);
   }
 
 }

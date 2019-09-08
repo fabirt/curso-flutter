@@ -23,6 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
     _gender = prefs.gender;
+    prefs.lastPage = SettingsPage.routeName;
     _notificacionPermissions = prefs.notificacionPermissions;
     _textEditingController = new TextEditingController(text: prefs.userName);
   }
