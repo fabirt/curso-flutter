@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('Color secundario'),
+          Text('Notificaciones'),
           Divider(),
           Text('Género'),
           Divider(),
