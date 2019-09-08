@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:user_preferences_app/src/widgets/drawer_menu_widget.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -55,22 +57,14 @@ class _SettingsPageState extends State<SettingsPage> {
             value: 1,
             title: Text('Masculino'),
             groupValue: _gender,
-            onChanged: (value) {
-              setState(() {
-                _gender = value;
-              });
-            },
+            onChanged: _setSelectedGender
           ),
           
           RadioListTile(
             value: 2,
             title: Text('Femenino'),
             groupValue: _gender,
-            onChanged: (value) {
-              setState(() {
-                _gender = value;
-              });
-            },
+            onChanged: _setSelectedGender,
           ),
 
           Divider(),
@@ -90,4 +84,16 @@ class _SettingsPageState extends State<SettingsPage> {
       )
     );
   }
+
+
+  _setSelectedGender(int value) async {
+    
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setInt('gender', value);
+    setState(() {
+      _gender = value;
+    });
+  }
+
 }
