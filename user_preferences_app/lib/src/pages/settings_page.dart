@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:user_preferences_app/src/shared_prefs/user_preferences.dart';
 
 import 'package:user_preferences_app/src/widgets/drawer_menu_widget.dart';
 
@@ -13,16 +13,18 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
 
-  bool _notificacionPermissions = false;
-  int _gender = 1;
-  String _name = 'Nezuko';
-
+  bool _notificacionPermissions;
+  int _gender;
+  String _name = '';
   TextEditingController _textEditingController;
+  final prefs = new UserPreferences();
 
   @override
   void initState() {
     super.initState();
-    _textEditingController = new TextEditingController(text: _name);
+    _gender = prefs.gender;
+    _notificacionPermissions = prefs.notificacionPermissions;
+    _textEditingController = new TextEditingController(text: prefs.userName);
   }
 
   @override
@@ -47,6 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
             onChanged: (value) {
               setState(() {
                 _notificacionPermissions = value;
+                prefs.notificacionPermissions = value;
               });
             },
           ),
@@ -77,7 +80,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 labelText: 'Nombre',
                 helperText: 'Nombre de usuario'
               ),
-              onChanged: (value){},
+              onChanged: (value) {
+                prefs.userName = value;
+              },
             ),
           )
         ],
@@ -86,14 +91,10 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
 
-  _setSelectedGender(int value) async {
-    
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    await prefs.setInt('gender', value);
-    setState(() {
-      _gender = value;
-    });
+  _setSelectedGender(int value) {
+    prefs.gender = value;
+    _gender = value;
+    setState(() {});
   }
 
 }
