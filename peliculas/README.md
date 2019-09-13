@@ -8,11 +8,11 @@ Este proyecto se llevó a cabo utilizando la API [The movie DB](https://www.them
 
 ## Screenshots
 
-- Página principal
+#### Página principal
 ![Home](examples/home.png)
 
-- Detalle de la película
+#### Detalle de la película
 ![Home](examples/detail.png)
 
-- Búsqueda de películas
+#### Búsqueda de películas
 ![Home](examples/search.png)
