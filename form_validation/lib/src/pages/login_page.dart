@@ -6,7 +6,8 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          _buildBackground(context)
+          _buildBackground(context),
+          _loginForm(context)
         ],
       ),
     );
@@ -51,11 +52,106 @@ class LoginPage extends StatelessWidget {
             children: <Widget>[
               Icon(Icons.person_pin_circle, color: Colors.white, size: 100.0),
               SizedBox(height: 12.0, width: double.infinity),
-              Text('Fabián Diartt', style: TextStyle(color: Colors.white, fontSize: 25.0),)
+              Text('Lorem Ipsum', style: TextStyle(color: Colors.white, fontSize: 25.0),)
             ],
           ),
         )
       ],
     );
   }
+
+  Widget _loginForm(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+
+          SafeArea(
+            child: Container(
+              height: 180,
+            ),
+          ),
+
+          Container(
+            width: size.width * 0.85,
+            margin: EdgeInsets.symmetric(vertical: 30.0),
+            padding: EdgeInsets.symmetric(vertical: 50.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5.0),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 3.0,
+                  offset: Offset(0.0, 5.0),
+                  spreadRadius: 1.0
+                )
+              ]
+            ),
+            child: Column(
+              children: <Widget>[
+                Text('Ingreso', style: TextStyle(fontSize: 20.0),),
+                SizedBox(height: 60.0),
+                _buildEmail(),
+                SizedBox(height: 30.0),
+                _buildPassword(),
+                SizedBox(height: 30.0),
+                _buildButton()
+              ],
+            ),
+          ),
+
+          Text('¿Olvidó la contraseña?'),
+          SizedBox(height: 100.0,)
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEmail() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          icon: Icon(Icons.alternate_email, color: Colors.deepPurple),
+          hintText: 'ejemplo@mail.com',
+          labelText: 'Correo electrónico'
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPassword() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        obscureText: true,
+        decoration: InputDecoration(
+          icon: Icon(Icons.lock_outline, color: Colors.deepPurple),
+          labelText: 'Contraseña'
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButton() {
+    return RaisedButton(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0 ),
+        child: Text('Ingresar'),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0)
+      ),
+      elevation: 0.0,
+      color: Colors.deepPurple,
+      textColor: Colors.white,
+      onPressed: (){},
+    );
+  }
+
 }
