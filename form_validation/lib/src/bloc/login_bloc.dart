@@ -19,6 +19,11 @@ class LoginBloc with Validators {
   Stream<bool> get formValidStream =>
     Observable.combineLatest2(emailStream, passwordStream, (e, p) => true);
 
+  // Obtener último valor ingresado a los streams
+  String get email    => _emailController.value;
+  String get password => _passwordController.value;
+
+
   dispose() {
     _emailController?.close();
     _passwordController?.close();
