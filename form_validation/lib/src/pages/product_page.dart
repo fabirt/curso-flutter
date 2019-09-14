@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_validation/src/models/product_model.dart';
+import 'package:form_validation/src/providers/products_provider.dart';
 import 'package:form_validation/src/utils/utils.dart' as utils;
 
 class ProductPage extends StatefulWidget {
@@ -11,6 +12,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
 
   final formKey = GlobalKey<FormState>();
+  final productProvider = new ProductsProvider();
   ProductModel product = new ProductModel();
 
   @override
@@ -111,5 +113,6 @@ class _ProductPageState extends State<ProductPage> {
   void _submit() {
     if( !formKey.currentState.validate() ) return;
     formKey.currentState.save();
+    productProvider.createProduct(product);
   }
 }
