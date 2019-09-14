@@ -8,15 +8,20 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text('Home')),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text('Email: ${bloc.email}'),
-          Divider(),
-          Text('Password: ${bloc.password}')
-        ],
+      body: Container(
+
       ),
+      floatingActionButton: _buildFAB(context),
+    );
+  }
+
+  Widget _buildFAB(BuildContext context) {
+    return FloatingActionButton(
+      child: Icon(Icons.add),
+      backgroundColor: Colors.deepPurple,
+      onPressed: () {
+        Navigator.pushNamed(context, 'product');
+      },
     );
   }
 }
