@@ -11,4 +11,4 @@
 
 ## Screenshots
 
-![Login](example/login.png)
+![Login](examples/login.png)
