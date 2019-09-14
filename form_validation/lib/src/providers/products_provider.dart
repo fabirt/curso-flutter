@@ -8,11 +8,34 @@ class ProductsProvider {
   final String _url = 'https://flutter-general.firebaseio.com';
 
   Future<bool> createProduct(ProductModel product) async {
-    final url = '$_url/products.json';
-    final resp = await http.post(url, body: productModelToJson(product));
-    final decodedData = json.decode(resp.body);
-    print(decodedData);
-    return true;
+    try {
+      final url = '$_url/products.json';
+      final resp = await http.post(url, body: productModelToJson(product));
+      final decodedData = json.decode(resp.body);
+      print(decodedData);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<List<ProductModel>> getProducts() async {
+    try {
+      final url = '$_url/products.json';
+      final resp = await http.get(url);
+      final Map<String, dynamic> decodedData = json.decode(resp.body);
+      final List<ProductModel> products = new List();
+      if (decodedData == null) return [];
+      decodedData.forEach((id, prod) {
+        final prodTemp = ProductModel.fromJson(prod);
+        prodTemp.id = id;
+        products.add(prodTemp);
+      });
+      return products;     
+    } catch (e) {
+      return [];     
+    }
   }
 
 }
