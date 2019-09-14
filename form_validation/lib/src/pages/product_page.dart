@@ -154,24 +154,32 @@ class _ProductPageState extends State<ProductPage> {
     } else {
       return Image(
         image: AssetImage( photo?.path ?? 'assets/no-image.png'),
-        height: 300.0,
+        height: 250.0,
         fit: BoxFit.cover
       );
     }
   }
 
   void _pickImage() async {
-    photo = await ImagePicker.pickImage(
-      source: ImageSource.gallery
-    );
-    if (photo != null) {
-
-    }
-    setState(() {});
+    _processImage(ImageSource.gallery);    
   }
   
-  void _openCamera() {
+  void _openCamera() async {
+    _processImage(ImageSource.camera);
+  }
 
+  _processImage( ImageSource source) async {
+    try {
+      final data = await ImagePicker.pickImage(
+        source: source
+      );
+      if (data != null) {
+        setState(() {
+          photo = data;
+        });
+      }
+    } catch (e) {
+    }
   }
 
 }
