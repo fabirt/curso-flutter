@@ -39,9 +39,15 @@ class HomePage extends StatelessWidget {
   Widget _productItem(BuildContext context, ProductModel product) {
     return Dismissible(
       key: UniqueKey(),
-      background: Container(color: Colors.red,),
+      direction: DismissDirection.endToStart,
+      background: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        color: Colors.red,
+        child: Icon(Icons.delete, color: Colors.white),
+        alignment: Alignment.centerRight,
+      ),
       onDismissed: (direction) {
-
+        productsProvider.deleteProduct(product.id);
       },
       child: ListTile(
         title: Text('${product.title} - ${product.price}'),

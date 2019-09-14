@@ -7,6 +7,7 @@ class ProductsProvider {
 
   final String _url = 'https://flutter-general.firebaseio.com';
 
+  // Crear producto
   Future<bool> createProduct(ProductModel product) async {
     try {
       final url = '$_url/products.json';
@@ -20,6 +21,7 @@ class ProductsProvider {
     }
   }
 
+  // Obtener productos
   Future<List<ProductModel>> getProducts() async {
     try {
       final url = '$_url/products.json';
@@ -35,6 +37,18 @@ class ProductsProvider {
       return products;     
     } catch (e) {
       return [];     
+    }
+  }
+
+  // Eliminar producto
+  Future<bool> deleteProduct(String id) async {
+    try {
+      final url = '$_url/products/$id.json';
+      final resp = await http.delete(url);
+      print(json.decode(resp.body));
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
