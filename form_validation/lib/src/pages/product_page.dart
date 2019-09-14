@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_validation/src/models/product_model.dart';
 import 'package:form_validation/src/utils/utils.dart' as utils;
 
 class ProductPage extends StatefulWidget {
@@ -8,7 +9,9 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+
   final formKey = GlobalKey<FormState>();
+  ProductModel product = new ProductModel();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class _ProductPageState extends State<ProductPage> {
               children: <Widget>[
                 _buildName(),
                 _buildPrice(),
+                _buildSwitch(),
                 _buildButton()
               ],
             ),
@@ -46,10 +50,12 @@ class _ProductPageState extends State<ProductPage> {
 
   Widget _buildName() {
     return TextFormField(
+      initialValue: product.title,
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
         labelText: 'Producto'
       ),
+      onSaved: (value) => product.title = value,
       validator: (value) {
         if (value.length < 3) {
           return 'Ingrese el nombre del producto';
@@ -62,10 +68,12 @@ class _ProductPageState extends State<ProductPage> {
 
   Widget _buildPrice() {
     return TextFormField(
+      initialValue: product.price.toString(),
       keyboardType: TextInputType.numberWithOptions(decimal: true),
       decoration: InputDecoration(
         labelText: 'Precio'
       ),
+      onSaved: (value) => product.price = double.parse(value),
       validator: (value) {
         if (utils.isNumeric(value)) {
           return null;
@@ -89,8 +97,19 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
+  Widget _buildSwitch() {
+    return SwitchListTile(
+      value: product.available,
+      title: Text('Disponible'),
+      activeColor: Colors.deepPurple,
+      onChanged: (value) => setState(() {
+        product.available = value;
+      }),
+    );
+  }
+
   void _submit() {
     if( !formKey.currentState.validate() ) return;
-    
+    formKey.currentState.save();
   }
 }
