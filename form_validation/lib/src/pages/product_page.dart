@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
 import 'package:form_validation/src/models/product_model.dart';
 import 'package:form_validation/src/providers/products_provider.dart';
 import 'package:form_validation/src/utils/utils.dart' as utils;
@@ -16,6 +20,7 @@ class _ProductPageState extends State<ProductPage> {
   final productProvider = new ProductsProvider();
   ProductModel product = new ProductModel();
   bool _isLoading = false;
+  File photo;
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +37,11 @@ class _ProductPageState extends State<ProductPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.photo_size_select_actual),
-            onPressed: (){},
+            onPressed: _pickImage,
           ),
           IconButton(
             icon: Icon(Icons.camera_alt),
-            onPressed: (){},
+            onPressed: _openCamera,
           ),
         ],
       ),
@@ -47,6 +52,7 @@ class _ProductPageState extends State<ProductPage> {
             key: formKey,
             child: Column(
               children: <Widget>[
+                _builImage(),
                 _buildName(),
                 _buildPrice(),
                 _buildSwitch(),
@@ -140,6 +146,32 @@ class _ProductPageState extends State<ProductPage> {
       duration: Duration(seconds: 2)
     );
     scaffoldKey.currentState.showSnackBar(snackbar);
+  }
+
+  Widget _builImage() {
+    if (product.photoUrl != null) {
+      return Container();
+    } else {
+      return Image(
+        image: AssetImage( photo?.path ?? 'assets/no-image.png'),
+        height: 300.0,
+        fit: BoxFit.cover
+      );
+    }
+  }
+
+  void _pickImage() async {
+    photo = await ImagePicker.pickImage(
+      source: ImageSource.gallery
+    );
+    if (photo != null) {
+
+    }
+    setState(() {});
+  }
+  
+  void _openCamera() {
+
   }
 
 }
