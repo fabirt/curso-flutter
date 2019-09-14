@@ -24,11 +24,30 @@ class HomePage extends StatelessWidget {
       future: productsProvider.getProducts(),
       builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
         if (snapshot.hasData) {
-          return Container();
+          final products = snapshot.data;
+          return ListView.builder(
+            itemCount: products.length,
+            itemBuilder: (context, i) => _productItem(context, products[i])
+          );
         } else {
           return Center(child: CircularProgressIndicator());
         }
       },
+    );
+  }
+
+  Widget _productItem(BuildContext context, ProductModel product) {
+    return Dismissible(
+      key: UniqueKey(),
+      background: Container(color: Colors.red,),
+      onDismissed: (direction) {
+
+      },
+      child: ListTile(
+        title: Text('${product.title} - ${product.price}'),
+        subtitle: Text('${product.id}'),
+        onTap: () => Navigator.pushNamed(context, 'product')
+      ),
     );
   }
 
