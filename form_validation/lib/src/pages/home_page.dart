@@ -49,10 +49,13 @@ class HomePage extends StatelessWidget {
       onDismissed: (direction) {
         productsProvider.deleteProduct(product.id);
       },
+      confirmDismiss: (direction) async {
+        return true;
+      },
       child: ListTile(
         title: Text('${product.title} - ${product.price}'),
         subtitle: Text('${product.id}'),
-        onTap: () => Navigator.pushNamed(context, 'product')
+        onTap: () => Navigator.pushNamed(context, 'product', arguments: product)
       ),
     );
   }

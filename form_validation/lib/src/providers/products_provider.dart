@@ -45,9 +45,22 @@ class ProductsProvider {
     try {
       final url = '$_url/products/$id.json';
       final resp = await http.delete(url);
-      print(json.decode(resp.body));
       return true;
     } catch (e) {
+      return false;
+    }
+  }
+
+  // Editar producto
+  Future<bool> updateProduct(ProductModel product) async {
+    try {
+      final url = '$_url/products/${product.id}.json';
+      final resp = await http.put(url, body: productModelToJson(product));
+      final decodedData = json.decode(resp.body);
+      print(decodedData);
+      return true;
+    } catch (e) {
+      print(e);
       return false;
     }
   }
