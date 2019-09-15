@@ -48,8 +48,13 @@ class HomePage extends StatelessWidget {
             },
             child: products.isEmpty 
             ? Center(
-                child: Image(
-                  image: AssetImage('assets/empty_state.jpg'),
+                child: GestureDetector(
+                  onTap: productsBloc.getProducts,
+                  child: Image(
+                    image: AssetImage('assets/empty_state.jpg'),
+                    height: 360.0,
+                    fit: BoxFit.cover,
+                  ),
                 )
               )
             : ListView.builder(

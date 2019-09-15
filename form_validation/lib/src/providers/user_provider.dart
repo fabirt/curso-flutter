@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:form_validation/src/environment/endpoints.dart';
 import 'package:form_validation/src/preferences/user_preferences.dart';
 
 
 
 class UserProvider {
 
-  final _firebaseKey = 'AIzaSyD-UdtmvHvgakripTKCoTwvCH-Q1RYvMF4';
   final _prefs = new UserPreferences();
 
   Future<Map<String, dynamic>> login(String email, String password) async {
@@ -17,7 +17,7 @@ class UserProvider {
     };
 
     final resp = await http.post(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=$_firebaseKey',
+      Endpoints.firebaseSignIn,
       body: json.encode(authData)
     );
 
@@ -41,7 +41,7 @@ class UserProvider {
     };
 
     final resp = await http.post(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=$_firebaseKey',
+      Endpoints.firebaseSignUp,
       body: json.encode(authData)
     );
 

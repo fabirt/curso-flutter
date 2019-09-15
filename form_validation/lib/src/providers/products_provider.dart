@@ -6,12 +6,13 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:mime_type/mime_type.dart';
 
+import 'package:form_validation/src/environment/endpoints.dart';
 import 'package:form_validation/src/preferences/user_preferences.dart';
 import 'package:form_validation/src/models/product_model.dart';
 
 class ProductsProvider {
 
-  final String _url = 'https://flutter-general.firebaseio.com';
+  final String _url = Endpoints.firebaseUrl;
   final prefs = new UserPreferences();
 
   // Crear producto
@@ -74,7 +75,7 @@ class ProductsProvider {
 
   Future<String> uploadImage(File image) async {
     try {
-      final url = Uri.parse('https://api.cloudinary.com/v1_1/dgtsbgju3/image/upload?upload_preset=tp0kckw7');
+      final url = Uri.parse(Endpoints.cloudinaryUploadUrl);
       final mimeType = mime(image.path).split('/');
       final imageUploadRequest = http.MultipartRequest(
         'POST',
