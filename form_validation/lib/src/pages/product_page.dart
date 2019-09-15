@@ -173,7 +173,7 @@ class _ProductPageState extends State<ProductPage> {
       );
     } else {
       return Image(
-        image: AssetImage( photo?.path ?? 'assets/no-image.png'),
+        image: photo?.path != null ? FileImage(photo) : AssetImage('assets/no-image.png'),
         height: 250.0,
         fit: BoxFit.cover
       );
