@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/models/product_model.dart';
-import 'package:form_validation/src/providers/products_provider.dart';
 
 class HomePage extends StatelessWidget {
 
-  final productsProvider = new ProductsProvider();
 
   @override
   Widget build(BuildContext context) {
 
-    final bloc = Provider.of(context);
+    final productsBloc = Provider.productsBloc(context);
+    productsBloc.getProducts();
 
     return Scaffold(
       appBar: AppBar(title: Text('Home')),
-      body: _productsList(),
+      body: _productsList(productsBloc),
       floatingActionButton: _buildFAB(context),
     );
   }
 
-  Widget _productsList() {
-    return FutureBuilder(
-      future: productsProvider.getProducts(),
+  Widget _productsList(ProductsBloc productsBloc) {
+
+    return StreamBuilder(
+      stream: productsBloc.productsStream,
       builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
         if (snapshot.hasData) {
           final products = snapshot.data;
           return ListView.builder(
             itemCount: products.length,
-            itemBuilder: (context, i) => _productItem(context, products[i])
+            itemBuilder: (context, i) => _productItem(context, productsBloc, products[i])
           );
         } else {
           return Center(child: CircularProgressIndicator());
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _productItem(BuildContext context, ProductModel product) {
+  Widget _productItem(BuildContext context, ProductsBloc productsBloc, ProductModel product) {
     return Dismissible(
       key: UniqueKey(),
       direction: DismissDirection.endToStart,
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
         alignment: Alignment.centerRight,
       ),
       onDismissed: (direction) {
-        productsProvider.deleteProduct(product.id);
+        productsBloc.deleteProduct(product.id);
       },
       confirmDismiss: (direction) async {
         return true;

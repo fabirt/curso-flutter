@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/models/product_model.dart';
-import 'package:form_validation/src/providers/products_provider.dart';
 import 'package:form_validation/src/utils/utils.dart' as utils;
 
 class ProductPage extends StatefulWidget {
@@ -17,14 +17,15 @@ class _ProductPageState extends State<ProductPage> {
 
   final formKey     = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final productProvider = new ProductsProvider();
+  ProductsBloc productsBloc;
   ProductModel product = new ProductModel();
   bool _isLoading = false;
   File photo;
 
+
   @override
   Widget build(BuildContext context) {
-
+    productsBloc = Provider.productsBloc(context);
     final ProductModel prodArg = ModalRoute.of(context).settings.arguments;
     if (prodArg != null) {
       product = prodArg;
@@ -133,13 +134,13 @@ class _ProductPageState extends State<ProductPage> {
     });
 
     if (photo != null) {
-      product.photoUrl = await productProvider.uploadImage(photo);
+      product.photoUrl = await productsBloc.uploadImage(photo);
     }
 
     if (product.id == null) {
-      productProvider.createProduct(product);
+      productsBloc.createProduct(product);
     } else {
-      productProvider.updateProduct(product);
+      productsBloc.updateProduct(product);
     }
     _showSnackbar('Registro guardado');
     Navigator.pop(context);
