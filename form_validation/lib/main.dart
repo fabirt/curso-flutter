@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return Provider(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Products',
+        title: 'Selloria',
         initialRoute: prefs.lastPage,
         routes: {
           'login'   : (BuildContext context) => LoginPage(),
@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
         },
         theme: ThemeData(
           primaryColor: Colors.deepPurple,
-          accentColor: Colors.deepPurple[400]
+          accentColor: Colors.deepPurple[400],
+          fontFamily: 'Lato'
         ),
       )
     );

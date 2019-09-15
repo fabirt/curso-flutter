@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Selloria', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0)),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app, color: Colors.white),

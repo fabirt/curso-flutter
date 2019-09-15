@@ -34,7 +34,7 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('Producto'),
+        title: Text('Producto', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0)),        
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.photo_size_select_actual),
