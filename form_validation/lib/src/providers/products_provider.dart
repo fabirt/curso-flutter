@@ -1,6 +1,11 @@
 
+import 'dart:io';
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
+import 'package:mime_type/mime_type.dart';
+
 import 'package:form_validation/src/models/product_model.dart';
 
 class ProductsProvider {
@@ -63,6 +68,34 @@ class ProductsProvider {
       print(e);
       return false;
     }
+  }
+
+  Future<String> uploadImage(File image) async {
+    try {
+      final url = Uri.parse('https://api.cloudinary.com/v1_1/dgtsbgju3/image/upload?upload_preset=tp0kckw7');
+      final mimeType = mime(image.path).split('/');
+      final imageUploadRequest = http.MultipartRequest(
+        'POST',
+        url
+      );
+      final file = await http.MultipartFile.fromPath(
+        'file',
+        image.path,
+        contentType: MediaType(mimeType[0], mimeType[1])
+      );
+      imageUploadRequest.files.add(file);
+      final streamResponse = await imageUploadRequest.send();
+      final resp = await http.Response.fromStream(streamResponse);
+      if (resp.statusCode != 200 && resp.statusCode != 201) {
+        return null;
+      } else {
+        final responseData = json.decode(resp.body);
+        return responseData['secure_url'];
+      }
+    } catch (e) {
+      return null;
+    }
+    
   }
 
 }

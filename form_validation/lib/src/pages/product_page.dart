@@ -125,12 +125,17 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  void _submit() {
+  void _submit() async {
     if( !formKey.currentState.validate() ) return;
     formKey.currentState.save();
     setState(() {
       _isLoading = true;
     });
+
+    if (photo != null) {
+      product.photoUrl = await productProvider.uploadImage(photo);
+    }
+
     if (product.id == null) {
       productProvider.createProduct(product);
     } else {
