@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/providers/user_provider.dart';
+import 'package:form_validation/src/utils/utils.dart' as utils;
 
 class LoginPage extends StatelessWidget {
 
@@ -176,10 +177,14 @@ class LoginPage extends StatelessWidget {
   }
 
 
-  _login(BuildContext context, LoginBloc loginBloc) {
+  _login(BuildContext context, LoginBloc loginBloc) async {
     
-    userProvider.login(loginBloc.email, loginBloc.password);
-    // Navigator.pushReplacementNamed(context, 'home');
+    final info = await userProvider.login(loginBloc.email, loginBloc.password);
+    if (info['ok']) {
+      Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      utils.showAlert(context, 'Algo salió mal', info['message']);
+    }
   }
 
 }
