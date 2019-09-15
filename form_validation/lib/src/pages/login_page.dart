@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/providers/user_provider.dart';
+import 'package:form_validation/src/utils/selloria_icon_icons.dart';
 import 'package:form_validation/src/utils/utils.dart' as utils;
 
 class LoginPage extends StatelessWidget {
@@ -48,7 +49,7 @@ class LoginPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 50.0),
           child: Column(
             children: <Widget>[
-              Icon(Icons.person_pin_circle, color: Colors.white, size: 60.0),
+              Icon(SelloriaIcon.money_bag, color: Colors.white, size: 60.0),
               SizedBox(height: 1.0, width: double.infinity),
               Text(
                 'Selloria',
