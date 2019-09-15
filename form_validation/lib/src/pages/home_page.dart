@@ -37,9 +37,16 @@ class HomePage extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<List<ProductModel>> snapshot) {
         if (snapshot.hasData) {
           final products = snapshot.data;
-          return ListView.builder(
-            itemCount: products.length,
-            itemBuilder: (context, i) => _productItem(context, productsBloc, products[i])
+          return RefreshIndicator(
+            color: Colors.deepPurple,
+            onRefresh: () async {
+              productsBloc.getProducts();
+            },
+            child: ListView.builder(
+              padding: EdgeInsetsDirectional.only(bottom: 100.0),
+              itemCount: products.length,
+              itemBuilder: (context, i) => _productItem(context, productsBloc, products[i])
+            ),
           );
         } else {
           return Center(child: CircularProgressIndicator());
