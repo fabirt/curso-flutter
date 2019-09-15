@@ -124,11 +124,12 @@ class LoginPage extends StatelessWidget {
           child: TextField(
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-                icon: Icon(Icons.alternate_email, color: Colors.deepPurple),
-                hintText: 'ejemplo@mail.com',
-                labelText: 'Correo electrónico',
-                counterText: snapshot.data,
-                errorText: snapshot.error),
+              icon: Icon(Icons.alternate_email, color: Colors.deepPurple),
+              hintText: 'ejemplo@mail.com',
+              labelText: 'Correo electrónico',
+              // counterText: snapshot.data,
+              errorText: snapshot.error
+            ),
             onChanged: loginBloc.changeEmail,
           ),
         );
@@ -146,10 +147,11 @@ class LoginPage extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             obscureText: true,
             decoration: InputDecoration(
-                icon: Icon(Icons.lock_outline, color: Colors.deepPurple),
-                labelText: 'Contraseña',
-                counterText: snapshot.data,
-                errorText: snapshot.error),
+              icon: Icon(Icons.lock_outline, color: Colors.deepPurple),
+              labelText: 'Contraseña',
+              // counterText: snapshot.data,
+              errorText: snapshot.error
+            ),
             onChanged: loginBloc.changePassword,
           ),
         );

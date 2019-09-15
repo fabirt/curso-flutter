@@ -124,11 +124,12 @@ class RegisterPage extends StatelessWidget {
           child: TextField(
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-                icon: Icon(Icons.alternate_email, color: Colors.deepPurple),
-                hintText: 'ejemplo@mail.com',
-                labelText: 'Correo electrónico',
-                counterText: snapshot.data,
-                errorText: snapshot.error),
+              icon: Icon(Icons.alternate_email, color: Colors.deepPurple),
+              hintText: 'ejemplo@mail.com',
+              labelText: 'Correo electrónico',
+              // counterText: snapshot.data,
+              errorText: snapshot.error
+            ),
             onChanged: loginBloc.changeEmail,
           ),
         );
@@ -146,10 +147,11 @@ class RegisterPage extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             obscureText: true,
             decoration: InputDecoration(
-                icon: Icon(Icons.lock_outline, color: Colors.deepPurple),
-                labelText: 'Contraseña',
-                counterText: snapshot.data,
-                errorText: snapshot.error),
+              icon: Icon(Icons.lock_outline, color: Colors.deepPurple),
+              labelText: 'Contraseña',
+              // counterText: snapshot.data,
+              errorText: snapshot.error
+            ),
             onChanged: loginBloc.changePassword,
           ),
         );
@@ -182,6 +184,7 @@ class RegisterPage extends StatelessWidget {
     
     final info = await userProvider.createUser(loginBloc.email, loginBloc.password);
     if (info['ok']) {
+      userProvider.setLastPage('home');
       Navigator.pushReplacementNamed(context, 'home');
     } else {
       utils.showAlert(context, 'Algo salió mal', info['message']);
