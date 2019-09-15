@@ -45,14 +45,14 @@ class LoginPage extends StatelessWidget {
         Positioned(bottom: 120.0, right: 20.0, child: circle),
         Positioned(bottom: -50.0, left: -20.0, child: circle),
         Container(
-          padding: EdgeInsets.only(top: 80.0),
+          padding: EdgeInsets.only(top: 50.0),
           child: Column(
             children: <Widget>[
-              Icon(Icons.person_pin_circle, color: Colors.white, size: 100.0),
-              SizedBox(height: 12.0, width: double.infinity),
+              Icon(Icons.person_pin_circle, color: Colors.white, size: 60.0),
+              SizedBox(height: 1.0, width: double.infinity),
               Text(
-                'Lorem Ipsum',
-                style: TextStyle(color: Colors.white, fontSize: 25.0),
+                'Selloria',
+                style: TextStyle(color: Colors.white, fontSize: 50.0, fontFamily: 'DancingScript'),
               )
             ],
           ),
@@ -70,13 +70,13 @@ class LoginPage extends StatelessWidget {
         children: <Widget>[
           SafeArea(
             child: Container(
-              height: 180,
+              height: 160,
             ),
           ),
           Container(
             width: size.width * 0.85,
-            margin: EdgeInsets.symmetric(vertical: 30.0),
-            padding: EdgeInsets.symmetric(vertical: 50.0),
+            margin: EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.symmetric(vertical: 30.0),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5.0),
@@ -93,9 +93,9 @@ class LoginPage extends StatelessWidget {
                   'Ingreso',
                   style: TextStyle(fontSize: 20.0),
                 ),
-                SizedBox(height: 30.0),
+                SizedBox(height: 20.0),
                 _buildEmail(bloc),
-                SizedBox(height: 30.0),
+                SizedBox(height: 15.0),
                 _buildPassword(bloc),
                 SizedBox(height: 30.0),
                 _buildButton(bloc)
@@ -107,7 +107,7 @@ class LoginPage extends StatelessWidget {
             onPressed: () => Navigator.pushReplacementNamed(context, 'register'),
           ),
           SizedBox(
-            height: 100.0,
+            height: 10.0,
           )
         ],
       ),
