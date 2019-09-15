@@ -4,6 +4,7 @@ import 'package:form_validation/src/widgets/product_widget.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/models/product_model.dart';
 import 'package:form_validation/src/preferences/user_preferences.dart';
+import 'package:form_validation/src/utils/selloria_icon_icons.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget {
         title: Text('Selloria', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0)),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.exit_to_app, color: Colors.white),
+            icon: Icon(SelloriaIcon.logout, color: Colors.white, size: 20.0),
             onPressed: () {
               _logout(context);
             },

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/models/product_model.dart';
 import 'package:form_validation/src/utils/utils.dart' as utils;
+import 'package:form_validation/src/utils/selloria_icon_icons.dart';
 
 class ProductPage extends StatefulWidget {
 
@@ -34,14 +35,18 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('Producto', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0)),        
+        title: Text('Producto', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0)), 
+        leading: IconButton(
+            icon: Icon(SelloriaIcon.back, size: 20.0),
+            onPressed: () => Navigator.of(context).pop(),
+        ),       
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.photo_size_select_actual),
+            icon: Icon(SelloriaIcon.picture, size: 20.0),
             onPressed: _pickImage,
           ),
           IconButton(
-            icon: Icon(Icons.camera_alt),
+            icon: Icon(SelloriaIcon.photo_camera, size: 25.0),
             onPressed: _openCamera,
           ),
         ],
@@ -110,7 +115,7 @@ class _ProductPageState extends State<ProductPage> {
       color: Colors.deepPurple,
       textColor: Colors.white,
       label: Text('Guardar'),
-      icon: Icon(Icons.save),
+      icon: Icon(SelloriaIcon.paper_plane, size: 15.0,),
       onPressed: _isLoading ? null : _submit,
     );
   }
