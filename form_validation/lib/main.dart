@@ -5,8 +5,13 @@ import 'package:form_validation/src/pages/home_page.dart';
 import 'package:form_validation/src/pages/login_page.dart';
 import 'package:form_validation/src/pages/product_page.dart';
 import 'package:form_validation/src/pages/register_page.dart';
+import 'package:form_validation/src/preferences/user_preferences.dart';
  
-void main() => runApp(MyApp());
+void main() async {
+  final prefs = new UserPreferences();
+  await prefs.initPrefs();
+  runApp(MyApp());
+} 
  
 class MyApp extends StatelessWidget {
 
