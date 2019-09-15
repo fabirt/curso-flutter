@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:form_validation/src/bloc/provider.dart';
 import 'package:form_validation/src/models/product_model.dart';
+import 'package:form_validation/src/preferences/user_preferences.dart';
 
 class HomePage extends StatelessWidget {
 
+  final _prefs = new UserPreferences();
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,17 @@ class HomePage extends StatelessWidget {
     productsBloc.getProducts();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
+      appBar: AppBar(
+        title: Text('Home'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.exit_to_app, color: Colors.white),
+            onPressed: () {
+              _logout(context);
+            },
+          )
+        ],
+      ),
       body: _productsList(productsBloc),
       floatingActionButton: _buildFAB(context),
     );
@@ -86,5 +98,10 @@ class HomePage extends StatelessWidget {
         Navigator.pushNamed(context, 'product');
       },
     );
+  }
+
+  void _logout(BuildContext context) {
+    _prefs.lastPage = 'login';
+    Navigator.pushReplacementNamed(context, 'login');
   }
 }

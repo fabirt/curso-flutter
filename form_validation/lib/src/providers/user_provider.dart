@@ -56,4 +56,8 @@ class UserProvider {
     }
   }
 
+  void setLastPage(String route) {
+    _prefs.lastPage = route;
+  }
+
 }

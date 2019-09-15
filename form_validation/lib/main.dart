@@ -15,6 +15,8 @@ void main() async {
  
 class MyApp extends StatelessWidget {
 
+  final prefs = new UserPreferences();
+
   @override
   Widget build(BuildContext context) {
 
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Products',
-        initialRoute: 'login',
+        initialRoute: prefs.lastPage,
         routes: {
           'login'   : (BuildContext context) => LoginPage(),
           'register': (BuildContext context) => RegisterPage(),

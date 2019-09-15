@@ -181,6 +181,7 @@ class LoginPage extends StatelessWidget {
     
     final info = await userProvider.login(loginBloc.email, loginBloc.password);
     if (info['ok']) {
+      userProvider.setLastPage('home');
       Navigator.pushReplacementNamed(context, 'home');
     } else {
       utils.showAlert(context, 'Algo salió mal', info['message']);
