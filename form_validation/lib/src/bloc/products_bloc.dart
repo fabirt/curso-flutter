@@ -11,13 +11,14 @@ class ProductsBloc {
   final _productsController = new BehaviorSubject<List<ProductModel>>();  
   final _loadingController = new BehaviorSubject<bool>();
   final _productsProvider = new ProductsProvider();
+  List<ProductModel> _products = new List();
 
   Stream<List<ProductModel>> get productsStream => _productsController.stream;
   Stream<bool> get loading => _loadingController.stream;
 
   void getProducts() async {
-    final products = await _productsProvider.getProducts();
-    _productsController.sink.add(products);
+    _products = await _productsProvider.getProducts();
+    _productsController.sink.add(_products);
   }
 
   void createProduct(ProductModel product) async {
@@ -33,6 +34,8 @@ class ProductsBloc {
   }
   
   void deleteProduct(String id) async {
+    _products.removeWhere((value) => value.id == id);
+    _productsController.sink.add(_products);
     await _productsProvider.deleteProduct(id);
   }
 
