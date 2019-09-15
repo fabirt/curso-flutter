@@ -35,18 +35,19 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('Producto', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0)), 
+        backgroundColor: Colors.white,
+        title: Text('Producto', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0, color: Theme.of(context).primaryColor)), 
         leading: IconButton(
-            icon: Icon(SelloriaIcon.back, size: 20.0),
+            icon: Icon(SelloriaIcon.back, size: 20.0, color: Theme.of(context).primaryColor),
             onPressed: () => Navigator.of(context).pop(),
         ),       
         actions: <Widget>[
           IconButton(
-            icon: Icon(SelloriaIcon.picture, size: 20.0),
+            icon: Icon(SelloriaIcon.picture, size: 20.0, color: Theme.of(context).primaryColor),
             onPressed: _pickImage,
           ),
           IconButton(
-            icon: Icon(SelloriaIcon.photo_camera, size: 25.0),
+            icon: Icon(SelloriaIcon.photo_camera, size: 25.0, color: Theme.of(context).primaryColor),
             onPressed: _openCamera,
           ),
         ],
@@ -161,11 +162,14 @@ class _ProductPageState extends State<ProductPage> {
 
   Widget _builImage() {
     if (product.photoUrl != null) {
-      return FadeInImage(
-        image: NetworkImage(product.photoUrl),
-        placeholder: AssetImage('assets/no-image.png'),
-        height: 250.0,
-        fit: BoxFit.cover
+      return Hero(
+        tag: product.id,
+        child: FadeInImage(
+          image: NetworkImage(product.photoUrl),
+          placeholder: AssetImage('assets/no-image.png'),
+          height: 250.0,
+          fit: BoxFit.cover
+        ),
       );
     } else {
       return Image(

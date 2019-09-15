@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_validation/src/utils/selloria_icon_icons.dart';
 
 import 'package:intl/intl.dart' as intl;
 
@@ -33,19 +34,22 @@ class ProductWidget extends StatelessWidget {
                 topRight: Radius.circular(20.0)),
               child: (product.photoUrl == null)
                 ? Image(image: AssetImage('assets/no-image.png'))
-                : FadeInImage(
+                : Hero(
+                  tag: product.id,
+                  child: FadeInImage(
                     image: NetworkImage(product.photoUrl),
                     placeholder: AssetImage('assets/jar-loading.gif'),
                     height: 250.0,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   )
+                )
             ),
             ListTile(
                 title: Text('${product.title}'),
                 subtitle: Text('\$ $price'),
                 trailing: IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: Icon(SelloriaIcon.garbage),
                   onPressed: onDelete,
                 )
             ),

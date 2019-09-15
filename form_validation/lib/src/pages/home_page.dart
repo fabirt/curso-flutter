@@ -18,10 +18,11 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selloria', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0)),
+        backgroundColor: Colors.white,
+        title: Text('Selloria', style: TextStyle(fontFamily: 'DancingScript', fontSize: 26.0, color: Theme.of(context).primaryColor)),
         actions: <Widget>[
           IconButton(
-            icon: Icon(SelloriaIcon.logout, color: Colors.white, size: 20.0),
+            icon: Icon(SelloriaIcon.logout, color: Theme.of(context).primaryColor, size: 20.0),
             onPressed: () {
               _logout(context);
             },
@@ -52,7 +53,7 @@ class HomePage extends StatelessWidget {
                 )
               )
             : ListView.builder(
-                padding: EdgeInsets.only(bottom: 100.0),
+                padding: EdgeInsets.only(bottom: 100.0, top: 12.0),
                 itemCount: products.length,
                 itemBuilder: (context, i) => _productItem(context, productsBloc, products[i])
             ),
