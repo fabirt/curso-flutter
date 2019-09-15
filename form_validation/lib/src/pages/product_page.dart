@@ -155,7 +155,12 @@ class _ProductPageState extends State<ProductPage> {
 
   Widget _builImage() {
     if (product.photoUrl != null) {
-      return Container();
+      return FadeInImage(
+        image: NetworkImage(product.photoUrl),
+        placeholder: AssetImage('assets/no-image.png'),
+        height: 250.0,
+        fit: BoxFit.cover
+      );
     } else {
       return Image(
         image: AssetImage( photo?.path ?? 'assets/no-image.png'),
@@ -179,6 +184,7 @@ class _ProductPageState extends State<ProductPage> {
         source: source
       );
       if (data != null) {
+        product.photoUrl = null;
         setState(() {
           photo = data;
         });
