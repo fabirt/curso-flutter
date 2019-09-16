@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -164,12 +165,12 @@ class _ProductPageState extends State<ProductPage> {
     if (product.photoUrl != null) {
       return Hero(
         tag: product.id,
-        child: FadeInImage(
-          image: NetworkImage(product.photoUrl),
-          placeholder: AssetImage('assets/no-image.png'),
+        child: CachedNetworkImage(
+          imageUrl: product.photoUrl,
           height: 250.0,
-          fit: BoxFit.cover
-        ),
+          width: double.infinity,
+          fit: BoxFit.cover,
+        )
       );
     } else {
       return Image(

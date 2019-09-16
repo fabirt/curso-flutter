@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:form_validation/src/utils/selloria_icon_icons.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:intl/intl.dart' as intl;
 
+import 'package:form_validation/src/utils/selloria_icon_icons.dart';
 import 'package:form_validation/src/models/product_model.dart';
 
 class ProductWidget extends StatelessWidget {
@@ -36,12 +37,20 @@ class ProductWidget extends StatelessWidget {
                 ? Image(image: AssetImage('assets/no-image.png'))
                 : Hero(
                   tag: product.id,
-                  child: FadeInImage(
-                    image: NetworkImage(product.photoUrl),
-                    placeholder: AssetImage('assets/jar-loading.gif'),
+                  child: CachedNetworkImage(
+                    imageUrl: product.photoUrl,
                     height: 250.0,
                     width: double.infinity,
                     fit: BoxFit.cover,
+                    imageBuilder: (context, imageProvider) {
+                      return FadeInImage(
+                        image: imageProvider,
+                        placeholder: AssetImage('assets/jar-loading.gif'),
+                        height: 250.0,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      );
+                    } 
                   )
                 )
             ),
